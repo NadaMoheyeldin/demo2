@@ -16,6 +16,10 @@ function MyForm(){
 
     const [emailError, setEmailError] = useState(''); //error state for email
     const [passwordError, setPasswordError] = useState(''); //error state for password
+    const [showPassword, setShowPassword] = useState(false); 
+    
+    // This state variable is used to toggle the visibility of the password input field
+    // It is initially set to false, meaning the password will be hidden
     
     const handleChange = (e) => {
         if (e.target.name ==='email'){
@@ -28,9 +32,8 @@ function MyForm(){
             e.target.value.length < 5 ? 'Email must be at least 5 characters long' : 
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value) ? '' : 'Invalid email format, please enter something like example@gmail.com');
             // Set email error based on the validation checks
-
-
         }
+
          if (e.target.name === 'password'){
             setPassword(e.target.value);
             //console.log(e.target.value);
@@ -43,7 +46,6 @@ function MyForm(){
             !/[0-9]/.test(e.target.value) ? 'Password must contain at least one number' :
             !/[!@#$%^&*]/.test(e.target.value) ? 'Password must contain at least one special character' : '');
             // Set password error based on the validation checks
-       
         }
     }
     // Handle submit function to process the form submission
@@ -56,7 +58,6 @@ function MyForm(){
         if (!password) {
             setPasswordError('Password is required');
         }
-    
         // Check if there are any errors before proceeding
         if (emailError || passwordError || !email || !password) {
             alert('Please fix the errors before submitting');
@@ -92,12 +93,18 @@ function MyForm(){
             <label htmlFor="pass">Password: </label>
             <input 
             id="pass"
-            type="text" 
+            type={showPassword ? 'text':'password'} 
             value={password} 
             onChange={(e) => handleChange(e)}
             name='password'
-            className={`form-control ${passwordError ? 'is-invalid': password ? 'is-valid':''}`}></input><br/> 
-
+            className={`form-control ${passwordError ? 'is-invalid': password ? 'is-valid':''}`}></input>
+            
+            <button 
+            type='button'
+            className='btn btn-outline-secondary'
+            onClick={()=> setShowPassword(!showPassword)}>{showPassword?'':''}<i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></i>
+            </button>
+            
             {passwordError && <span className="text-danger">{passwordError}</span>}<br/>
             {/* Display password error if it exists */}
             
