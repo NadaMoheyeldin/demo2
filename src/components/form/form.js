@@ -2,10 +2,8 @@ import  { useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 //form creation
-function MyForm(){
+function MyForm({ onLoginSuccess }){
     // Handle change function to update state based on input field changes
     // This function is called whenever the input fields change
     // It checks which input field is being changed and updates the corresponding state
@@ -67,7 +65,10 @@ function MyForm(){
     
         // If no errors, proceed with form submission logic
         console.log('Form submitted successfully with email:', email, 'and password:', password);
-    
+
+        // Call the login success handler passed from App.js
+        onLoginSuccess(); // <-- This switches to ToDo page
+
         // Reset the form fields after submission
         setEmail('');
         setPassword('');
@@ -86,7 +87,8 @@ function MyForm(){
             value={email} 
             onChange={(e) => handleChange(e)}
             name='email'
-            className={`form-control ${emailError ? 'is-invalid' : email ? 'is-valid' : ''}`}></input><br/> 
+            className={`form-control ${emailError ? 'is-invalid' : email ? 'is-valid' : ''}`}
+            autoFocus></input><br/> 
 
             {emailError && <span className="text-danger">{emailError}</span>}<br/>
             {/* Display email error if it exists */}
@@ -116,10 +118,6 @@ function MyForm(){
             disabled={emailError||passwordError}>Login</button><br/>
             
         </form><br/>
-
-        
-     
-        
         </>
     )
 }
