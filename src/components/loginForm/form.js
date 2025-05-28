@@ -91,6 +91,7 @@ function MyForm(){
             {/* Display email error if it exists */}
 
             <label htmlFor="pass">Password: </label>
+            <div className="input-group">
             <input 
             id="pass"
             type={showPassword ? 'text':'password'} 
@@ -104,19 +105,21 @@ function MyForm(){
             className='btn btn-outline-secondary'
             onClick={()=> setShowPassword(!showPassword)}>{showPassword?'':''}<i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></i>
             </button>
+            </div>
+            <br/>
             
             {passwordError && <span className="text-danger">{passwordError}</span>}<br/>
             {/* Display password error if it exists */}
             
             <button type="submit" className="btn btn-primary"
-            disabled={emailError||passwordError}>Login</button>
+            disabled={emailError||passwordError}>Login</button><br/>
             
-        </form>
+        </form><br/>
 
-        <p>Don't have an account? <a href="/register">Register</a></p>
-        <p>Forgot password? <a href="/forgot-password">Reset</a></p>
+        <p>Don't have an account? <a href="/register">Register</a></p><br/>
+        <p>Forgot password? <a href="/forgot-password">Reset</a></p><br/>
         <p>Login with Google</p>
-        <button>Google</button>
+        <button>Google</button><br/>
         </>
     )
 }
