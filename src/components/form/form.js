@@ -2,11 +2,10 @@ import  { useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
 //form creation
 function MyForm(){
-
-    const [email, setEmail] = useState(''); // Initialize email state
-    const [password, setPassword] = useState('');// Initialize password state
     // Handle change function to update state based on input field changes
     // This function is called whenever the input fields change
     // It checks which input field is being changed and updates the corresponding state
@@ -14,6 +13,8 @@ function MyForm(){
     // e.target.value is the new value of the input field
     // The function updates the state variables email and password accordingly
 
+    const [email, setEmail] = useState(''); // Initialize email state
+    const [password, setPassword] = useState('');// Initialize password state
     const [emailError, setEmailError] = useState(''); //error state for email
     const [passwordError, setPasswordError] = useState(''); //error state for password
     const [showPassword, setShowPassword] = useState(false); 
@@ -116,10 +117,9 @@ function MyForm(){
             
         </form><br/>
 
-        <p>Don't have an account? <a href="/register">Register</a></p><br/>
-        <p>Forgot password? <a href="/forgot-password">Reset</a></p><br/>
-        <p>Login with Google</p>
-        <button>Google</button><br/>
+        
+     
+        
         </>
     )
 }
